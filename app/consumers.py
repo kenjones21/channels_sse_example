@@ -25,7 +25,6 @@ class ServerSentEventsConsumer(AsyncHttpConsumer):
             self.channel_name
         )
 
-        await self.send_body("event: e\ndata: data goes here2\n\n".encode('utf-8'), more_body=True)
         while True:
             print('group send')
             await asyncio.sleep(5)
@@ -41,9 +40,8 @@ class ServerSentEventsConsumer(AsyncHttpConsumer):
         print('disocnnectin')
         # Leave room group
 
-    # Receive message from room group
     async def chat_message(self, event):
-        print('we out here')
+        print('chat_message')
         message = event['message']
 
         # Send message to WebSocket
